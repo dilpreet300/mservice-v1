@@ -1,3 +1,1 @@
 # mservice-v1
-
-This is v1 though it is pretty lame but ....
