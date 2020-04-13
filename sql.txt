@@ -1,0 +1,153 @@
+CREATE TABLE MobileOut(
+    ID INT AUTO_INCREMENT,
+    Charges INT DEFAULT 0,
+    Due INT DEFAULT 0,
+    Admin VARCHAR(20),
+    Date_Time TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    Received VARCHAR(1) DEFAULT 'N',
+    PRIMARY KEY(ID)
+);
+
+CREATE TABLE admin(
+    UserId VARCHAR(20),
+    Name VARCHAR(20) NOT NULL,
+    Email VARCHAR(320) NOT NULL,
+    Status VARCHAR(1) DEFAULT 'M',
+    IsLoggedIn VARCHAR(1) DEFAULT 'N',
+    Passw VARCHAR(64),
+    PRIMARY KEY(UserId)
+);
+
+CREATE TABLE MobileIn(
+    ID INT  AUTO_INCREMENT,
+    Name VARCHAR(20) NOT NULL,
+    Brand VARCHAR(20) NOT NULL,
+    Model VARCHAR(20) NOT NULL,
+    Admin VARCHAR(20) NOT NULL,
+    Date_Time TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    Problem VARCHAR(500) NOT NULL,
+    Contact INT NOT NULL,
+    PRIMARY KEY(ID)
+);
+
+ALTER TABLE MobileIn ADD FOREIGN KEY(ID) REFERENCES MobileOut(ID) ON DELETE CASCADE;
+
+
+delimiter $
+
+create trigger t1 before insert on mobilein
+    for each row
+        begin
+            INSERT INTO MobileOut() VALUES();
+        end $
+
+delimiter ;
+
+DROP TABLE MobileOut;
+
+DROP TABLE MobileIn;
+
+
+
+INSERT INTO MobileIn(Name,Brand,Model,Admin,Problem,Contact) VALUES('Dilpreet','vivo','Y21L','dilpreet1','IT is not working',88741512);
+
+
+DELETE 
+FROM MobileIn;
+
+
+SELECT *
+FROM MobileIn;
+
+SELECT *
+FROM MobileOut;
+
+
+CREATE TABLE MobileOut(
+    ID INT AUTO_INCREMENT,
+    Charges INT DEFAULT 0,
+    Due INT DEFAULT 0,
+    Admin VARCHAR(20),
+    Date_Time TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    Received VARCHAR(1) DEFAULT 'N',
+    PRIMARY KEY(ID)
+);
+
+CREATE TABLE admin(
+    UserId VARCHAR(20),
+    Name VARCHAR(20) NOT NULL,
+    Email VARCHAR(320) NOT NULL,
+    Status VARCHAR(1) DEFAULT 'M',
+    IsLoggedIn VARCHAR(1) DEFAULT 'N',
+    Passw VARCHAR(64),
+    PRIMARY KEY(UserId)
+);
+
+delimiter $
+
+create trigger t1 before insert on mobilein
+    for each row
+        begin
+            INSERT INTO MobileOut() VALUES();
+        end $
+
+delimiter ;
+
+
+show tables;
+
+
+describe admin;
+
+
+select passw
+from admin
+where UserId='dilpreet';
+
+
+select exists(select * from admin where UserId='123');
+
+
+select
+sha2('xyz',256);
+
+
+insert into admin values('dilpreet16','dilpreet','dilpreet.bjf@gmail.com','A','N',sha2('dilpreet',256));
+
+select *
+from admin;
+
+select *
+from mobileout;
+
+
+describe mobilein;
+
+update admin
+set isloggedin='N'
+where userid='dilpreet16';
+
+
+select *
+from mobilein
+where id=0 or name='sumit';
+
+
+ALTER table mobileout add column date_time TIMESTAMP;
+
+
+select *
+from mobilein
+where id=1 or name="" or brand="";
+
+
+
+select *
+from mobileout;
+
+select *
+from admin;
+
+update mobileout
+set charges=0,due =0
+where id=1;
